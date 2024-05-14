@@ -3,14 +3,14 @@ namespace net.shonx.books;
 using System.Text.Json.Serialization;
 
 [method: JsonConstructor]
-public class ServiceBusMessage(string id, string subject, Event data, string eventType, string dataVersion, string metadataVersion, DateTime eventTime, string topic)
+public class ServiceBusMessage(string id, string subject, Event Event, string eventType, string dataVersion, string metadataVersion, DateTime eventTime, string topic)
 {
     [JsonPropertyName("id")]
     public string Id { get; set; } = id;
     [JsonPropertyName("subject")]
     public string Subject { get; set; } = subject;
     [JsonPropertyName("data")]
-    public Event Event { get; set; } = data;
+    public Event Event { get; set; } = Event;
     [JsonPropertyName("eventType")]
     public string EventType { get; set; } = eventType;
     [JsonPropertyName("dataVersion")]

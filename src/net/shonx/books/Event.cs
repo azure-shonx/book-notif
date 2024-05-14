@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 public class Event(string ListID, Dictionary<string, string> Message, List<string> Emails)
 {
   [JsonPropertyName("id")]
-  public string ListID = ListID;
+  public string ListID { get; } = ListID ?? throw new NullReferenceException("Id");
   [JsonPropertyName("Message")]
   public Dictionary<string, string> Message { get; } = Message ?? throw new NullReferenceException("Message");
   [JsonPropertyName("Emails")]

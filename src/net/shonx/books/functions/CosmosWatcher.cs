@@ -22,17 +22,18 @@ public class CosmosWatcher
         {
             foreach (List document in updatedLists)
             {
-                if (!EqualityComparer.ListsEqual(document.BookISBNs, document.PreviousBookISBNs))
-                {
-                    var Diffs = Differences(document.BookISBNs, document.PreviousBookISBNs);
-                    EventGridEvent eventGridEvent = new(
-                        subject: $"/cosmosdb/books/databases/bookclub/containers/lists/documents/{document.Id}",
-                        eventType: "ListUpdated",
-                        dataVersion: "1.0",
-                        data: new BinaryData(new Event(document.Id, Diffs, document.Subscribers))
-                    );
-                    List.Add(eventGridEvent);
-                }
+                if (document.Subscribers.Count == 0)
+                    continue;
+                var Diffs = Differences(document.BookISBNs, document.PreviousBookISBNs);
+                if (Diffs.Count == 0)
+                    continue;
+                EventGridEvent eventGridEvent = new(
+                    subject: $"/cosmosdb/books/databases/bookclub/containers/lists/documents/{document.Id}",
+                    eventType: "ListUpdated",
+                    dataVersion: "1.0",
+                    data: new BinaryData(new Event(document.Id, Diffs, document.Subscribers))
+                );
+                List.Add(eventGridEvent);
             }
             return List;
         }

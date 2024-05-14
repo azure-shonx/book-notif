@@ -45,7 +45,6 @@ internal static class Http
         {
             return null;
         }
-        Console.WriteLine(json);
         return JsonSerializer.Deserialize<Book>(json);
     }
 
