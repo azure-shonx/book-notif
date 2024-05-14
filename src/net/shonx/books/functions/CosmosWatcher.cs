@@ -9,8 +9,8 @@ public class CosmosWatcher
     [Function("CosmosWatcher")]
     [EventGridOutput(TopicEndpointUri = "TOPIC_ENDPOINT", TopicKeySetting = "TOPIC_KEY")]
     public static List<EventGridEvent> Run([CosmosDBTrigger(
-        databaseName: "bookclub", 
-        containerName: "lists", 
+        databaseName: "bookclub",
+        containerName: "lists",
         Connection = "CosmosDB",
         LeaseConnection = "CosmosDB",
         LeaseContainerName = "leases",
