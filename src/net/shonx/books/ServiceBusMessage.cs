@@ -2,6 +2,7 @@ namespace net.shonx.books;
 
 using System.Text.Json.Serialization;
 
+[method: JsonConstructor]
 public class ServiceBusMessage(string id, string subject, Event data, string eventType, string dataVersion, string metadataVersion, DateTime eventTime, string topic)
 {
     [JsonPropertyName("id")]
