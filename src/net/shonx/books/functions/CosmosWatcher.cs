@@ -29,7 +29,7 @@ public class CosmosWatcher
                         subject: $"/cosmosdb/books/databases/bookclub/containers/lists/documents/{document.Id}",
                         eventType: "ListUpdated",
                         dataVersion: "1.0",
-                        data: new BinaryData(new Event(Diffs, document.Subscribers))
+                        data: new BinaryData(new Event(document.Id, Diffs, document.Subscribers))
                     );
                     List.Add(eventGridEvent);
                 }
